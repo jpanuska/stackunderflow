@@ -1,4 +1,38 @@
-<h1>QUESTIONS</h1>
+<div class="container">
+    <div class="row">
+       <div class="col-sm-12">
+         <form ng-submit="addQuestion(newQuestion)">
+          <div  class="form-group">
+                <label for="title">Your question</label>
+                <input ng-model='newQuestion.name' type="text" class="form-control">
+          </div>
+                
+          <div  class="form-group">
+                <label for="body">Your question</label>
+                <input ng-model='newQuestion.body' type="text" class="form-control">
+          </div>
+          
+            <button type="submit" class="btn btn-success">Save</button>
+            <button type="reset"  class="btn btn-danger">Clean</button>
+            </form>
+       </div>
+        
+        
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h1>Questions from DB</h1>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                <div class="list-group-item" ng-repeat="question in questions">
+                    {{question}}
+                    <span class="badge" ng-click="">X</span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <p>If we are logged in we should have a member obj {{member}}</p>
 
