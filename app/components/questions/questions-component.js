@@ -6,19 +6,21 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	 * */
 	$scope.tags = DataService.getTags();
 	$scope.questions = DataService.getQuestions();
+
 	
-	/**
-	 * $scope.addQuestion = function(newQuestion){
-	 * 	newQuestion.memberId = $rootScope.member.$id;
-	 * 	$scope.questions.$add(newQuestion).then(function(ref){
-	 * 	  //Add the newly added question to the member object	
-	 * 	  $rootScope.member.questions = $rootScope.member.questions || {};
-	 *    //Another Dictonary structure all we are doing is adding the questionId to the member.questions dictionary.
-	 *    //To avoid duplicating data in our database we only store the questionId instead of the entire question again 
-	 *    $rootScope.member.questions[ref.key()] = ref.key();
-	 *    $rootScope.member.$save();
-	 *  })
-	 * }
+	$scope.addQuestion = function(newQuestion){
+		debugger
+	 newQuestion.memberId = $rootScope.member.$id;
+	  	$scope.questions.$add(newQuestion).then(function(ref){
+	  	  //Add the newly added question to the member object	
+	  	$rootScope.member.questions = $rootScope.member.questions || {};
+	     //Another Dictonary structure all we are doing is adding the questionId to the member.questions dictionary.
+	     //To avoid duplicating data in our database we only store the questionId instead of the entire question again 
+	     $rootScope.member.questions[ref.key()] = ref.key();
+	     $rootScope.member.$save();
+	  })
+	 }
+	  /*
 	 * question Schema
 	 * {
 	 *  title: string,
