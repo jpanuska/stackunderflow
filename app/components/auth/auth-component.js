@@ -89,6 +89,7 @@ app.service('AuthService', function ($rootScope, $firebaseObject, CONSTANTS) {
 	}
 
 	this.login = function (user, cb) {
+		debugger
 		db.authWithPassword(user, function (err, authData) {
 			if (err) {
 				return cb(err)
