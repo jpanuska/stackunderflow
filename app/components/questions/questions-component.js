@@ -20,6 +20,10 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	     $rootScope.member.$save();
 	  })
 	 }
+	 
+	 $scope.deleteQuestion = function (question){
+		 $scope.questions.$remove(question);
+	 }
 	  /*
 	 * question Schema
 	 * {
