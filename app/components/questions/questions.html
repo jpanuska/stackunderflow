@@ -16,16 +16,10 @@
                 <input ng-model='newQuestion.body' type="text" class="form-control" placeholder="Question">
           </div>
           
-          <div class="form-group">
-              <label for="tag">Tags</label>
-              
-              <select size='4' multiple ng-model='newQuestion.tags'>
-                    <option disabled>-</option>
-                    <option ng-repeat="tag in tags" value="{{tag}}" style="color: black; width: 200px">{{tag}}</option>
-              </select>
-
-                
+          <div  class="form-group">
+                <input ng-model='newQuestion.tag' type="text" class="form-control" placeholder="Tags">
           </div>
+
             
                 <button type="submit" class="btn btn-success">Save</button>
                 <button type="reset"  class="btn btn-danger">Clean</button>
@@ -38,7 +32,7 @@
                    
                     <h3>Title: {{question.title}}</h3>
                     <h4> Question: {{question.body}}</h4>
-                    <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} , </span></p>
+                    <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} </span></p>
                     <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
 
                     <div class="btn-group">

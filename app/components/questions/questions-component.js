@@ -13,6 +13,8 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 		
 		newQuestion.posted = Date.now();
 	    newQuestion.memberId = $rootScope.member.$id;
+		newQuestion.tags = newQuestion.tag.split(" ");
+		newQuestion.tag = null;
 		debugger
 	  	$scope.questions.$add(newQuestion).then(function(ref){
 	  	//Add the newly added question to the member object	
@@ -79,14 +81,30 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	$scope.responses = responses;
 	
 	
-	 $scope.addComment = function(newQuestion){
-	  	newComment.memberId = $rootScope.member.$id;
-	  	$scope.comments.$add(newQuestion).then(function(ref){
+	 $scope.addComment = function(newComment){
+		newComment.posted = Date.now();
+	  	newComment.memberId = $rootScope.member.$id;	
+	  	$scope.comments.$add(newComment).then(function(ref){
 	  	  //Add the newly added comment to the member object	
 	  	  $rootScope.member.comments = $rootScope.member.comments || {};
 	     //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
 	     //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
-	     $rootScope.member.comments[ref.key()] = ref.key();
+	     debugger
+		 $rootScope.member.comments[ref.key()] = ref.key();
+	     $rootScope.member.$save();
+	   })
+	  }
+	  
+	 $scope.addResponse = function(newResponse){
+		newResponse.posted = Date.now();
+	  	newResponse.memberId = $rootScope.member.$id;
+	  	$scope.comments.$add(newResponse).then(function(ref){
+	  	  //Add the newly added comment to the member object	
+	  	  $rootScope.member.responses = $rootScope.member.responses || {};
+	     //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
+	     //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
+	     debugger
+		 $rootScope.member.responses[ref.key()] = ref.key();
 	     $rootScope.member.$save();
 	   })
 	  }

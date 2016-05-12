@@ -1,36 +1,71 @@
 <div class="container">
     <div class="row">
-        <div class="panel panel-primary">
+        
+        <div class="panel panel-default">
           <div class="panel-heading">
             
-                <h2>Title: {{question.title}}  </h2>
-                <p> Question:{{question.body}}   </p>
+                <h2>T: {{question.title}}  </h2>
+                <p> Q:{{question.body}}   </p>
                 <p> Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
                 <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} , </span></p>
                 <a ng-click='showComs = !showComs'>Add a comment</a>
-                <a ng-click='showres = !showres'>Add a response</a>
+                <a ng-click='showRes = !showRes'>Add a response</a>
 
-                <form ng-respont="addComment(newComment)">
+                <form ng-show='showComs' ng-submit="addComment(newComment)">
                     <div  class="form-group">
-                <input ng-model='newComment' type="text" class="form-control" placeholder="Your comment">
+                <input ng-model='newComment.body' type="text" class="form-control" placeholder="Your comment">
                     </div>
                     <button type="submit" class="btn btn-success">Save</button>
                     <button type="reset"  class="btn btn-danger">Clean</button>
                 </form>   
 
-            <form ng-respont="addResponse(newRespons)">
+            <form ng-show='showRes' ng-submit="addResponse(newRes)">
                 <div  class="form-group">
-            <input ng-model='newComment' type="text" class="form-control" placeholder="Your response">
+            <input ng-model='newRes.body' type="text" class="form-control" placeholder="Your response">
                 </div>
                 <button type="submit" class="btn btn-success">Save</button>
                 <button type="reset"  class="btn btn-danger">Clean</button>
              </form>   
 
-        </div>                
-            <div class="panel-body">
+        </div>
+                     
+        <div class="panel-body">
+            
+                <div class="list-group">
+                <div class="list-group-item" ng-repeat="comment in question.comments">
+                    
+                    <h3>Posted by {{comment.memberId}} at {{comment.posted | date: 'short'}}</h3>
+                    <p>{{comment.body}}</p>
 
-            </form>
-            </div>
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
+                    </div>    
+                </div>
+                </div>
+
+        </div>
+     </div>
+        
+     <div class="panel panel-success">
+        <div class="panel-body">
+            
+               <div class="list-group">
+                <div class="list-group-item" ng-repeat="res in question.responses">
+                    
+                    <h3>Posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
+                    <p>{{res.body}}</p>
+
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
+                    </div>    
+                </div>
+                </div>
+        </div>
+     </div>
+        
+        
+        
+        
         </div>
     </div>
 </div>
