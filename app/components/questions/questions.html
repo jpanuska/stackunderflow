@@ -17,17 +17,14 @@
           </div>
           
           <div class="form-group">
-              <p><label for="tag">Tags</label>
+              <label for="tag">Tags</label>
               
-              <p><select multiple ng-model='newQuestion.tags[]'>
+              <select size='4' multiple ng-model='newQuestion.tags'>
                     <option disabled>-</option>
-                    <option ng-repeat="tag in tags" value="tag">{{tag}}</option>
+                    <option ng-repeat="tag in tags" value="{{tag}}" style="color: black; width: 200px">{{tag}}</option>
+              </select>
 
-                </select></p>
                 
-                
-                <input ng-model='newQuestion.tag' type="text" class="form-control" placeholder="Tag">
-                </p>
           </div>
             
                 <button type="submit" class="btn btn-success">Save</button>
@@ -41,8 +38,8 @@
                    
                     <h3>Title: {{question.title}}</h3>
                     <h4> Question: {{question.body}}</h4>
-                    <p>Tag : {{question.tag}}</p>
-                    <p>posted by {{question.memberId}} in {{question.posted | date: 'short'}}</p>
+                    <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} , </span></p>
+                    <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
 
                     <div class="btn-group">
                     <button ui-sref="question({id: question.$id})" type="button" class="btn btn-info">More</button>
