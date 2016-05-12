@@ -10,7 +10,7 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	
 	$scope.addQuestion = function(newQuestion){
 		debugger
-		newQuestion.time = Date.now();
+		newQuestion.posted = Date.now();
 	    newQuestion.memberId = $rootScope.member.$id;
 	  	$scope.questions.$add(newQuestion).then(function(ref){
 	  	//Add the newly added question to the member object	
