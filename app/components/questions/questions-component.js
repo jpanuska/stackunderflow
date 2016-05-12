@@ -5,13 +5,15 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	 * https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray
 	 * */
 	$scope.tags = DataService.getTags();
+	$scope.tags = ['css','html', 'js'];
 	$scope.questions = DataService.getQuestions();
 
 	
 	$scope.addQuestion = function(newQuestion){
-		debugger
+		
 		newQuestion.posted = Date.now();
 	    newQuestion.memberId = $rootScope.member.$id;
+		debugger
 	  	$scope.questions.$add(newQuestion).then(function(ref){
 	  	//Add the newly added question to the member object	
 	  	$rootScope.member.questions = $rootScope.member.questions || {};
@@ -19,6 +21,7 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	     //To avoid duplicating data in our database we only store the questionId instead of the entire question again 
 	     $rootScope.member.questions[ref.key()] = ref.key();
 	     $rootScope.member.$save();
+		 $scope.newQuestion = null;
 	  })
 	 }
 	 
