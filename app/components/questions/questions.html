@@ -8,7 +8,10 @@
           </div>
                 
           <div  class="form-group">
-                <input ng-model='newQuestion.body' type="text" class="form-control" placeholder="Question">
+              <input ng-model='newQuestion.body' type="text" class="form-control" placeholder="Question">
+          </div>
+          <div class="form-group">
+              
           </div>
           
             <button type="submit" class="btn btn-success">Save</button>
@@ -16,10 +19,7 @@
             </form>
        </div>
         
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h1>Questions from DB</h1>
-            </div>
+        <div class="panel panel-info">
             <div class="panel-body">
                 <div class="list-group">
                 <div class="list-group-item" ng-repeat="question in questions">
