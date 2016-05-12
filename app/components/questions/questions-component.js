@@ -74,19 +74,19 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	$scope.comments = comments;
 	$scope.responses = responses;
 	
-	/**
-	 * $scope.addComment = function(newQuestion){
-	 * 	newComment.memberId = $rootScope.member.$id;
-	 * 	$scope.comments.$add(newQuestion).then(function(ref){
-	 * 	  //Add the newly added comment to the member object	
-	 * 	  $rootScope.member.comments = $rootScope.member.comments || {};
-	 *    //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
-	 *    //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
-	 *    $rootScope.member.comments[ref.key()] = ref.key();
-	 *    $rootScope.member.$save();
-	 *  })
-	 * }
-	 * question Schema
+	
+	 $scope.addComment = function(newQuestion){
+	  	newComment.memberId = $rootScope.member.$id;
+	  	$scope.comments.$add(newQuestion).then(function(ref){
+	  	  //Add the newly added comment to the member object	
+	  	  $rootScope.member.comments = $rootScope.member.comments || {};
+	     //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
+	     //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
+	     $rootScope.member.comments[ref.key()] = ref.key();
+	     $rootScope.member.$save();
+	   })
+	  }
+	 /* question Schema
 	 * {
 	 *  title: string,
 	 *  body: string,

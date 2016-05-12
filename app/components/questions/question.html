@@ -1,3 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2>{{question.title}}  </h2>
+                <p> {{question.body}}   </p>
+                <p> {{question.memberId}}</p>
+            </div>
+            <div class="panel-body">
+<!-- ??????--><form ng-submit="addComment()">
+                <div  class="form-group">
+                    <input ng-model='newComment' type="text" class="form-control" placeholder="Your Comment">
+                </div>
+          
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset"  class="btn btn-danger">Clean</button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--
 <h1>A SINGLE QUESTION VIEW</h1>
 
 <p>If we are logged in we should have a member obj {{member}}</p>
@@ -9,3 +34,4 @@
 <p>Only the member who posted the the questions/answers/comments can edit their content</p>
 <p>A member may only upvote the questions/answers/comments once.</p>
 <p>A member can change their vote to either up or down but may not vote both ways.</p>
+-->

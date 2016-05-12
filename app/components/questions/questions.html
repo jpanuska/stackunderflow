@@ -3,13 +3,8 @@
        <div class="col-sm-12">
          <form ng-submit="addQuestion(newQuestion)">
           <div  class="form-group">
-<<<<<<< HEAD
               <h1>Ask your question</h1>
                 <input ng-model='newQuestion.title' type="text" class="form-control" placeholder="Title">
-=======
-                <label for="title">Your Question Title</label>
-                <input ng-model='newQuestion.name' type="text" class="form-control">
->>>>>>> a1d785f35c2b2c6e681cd94448296c5b86ca888c
           </div>
                 
           <div  class="form-group">
@@ -21,7 +16,6 @@
             </form>
        </div>
         
-        
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h1>Questions from DB</h1>
@@ -29,13 +23,15 @@
             <div class="panel-body">
                 <div class="list-group">
                 <div class="list-group-item" ng-repeat="question in questions">
-                    
-                    <span class="badge" ng-click="deleteQuestion(question)">X</span>
+                   
                     <h3>Title: {{question.title}}</h3>
                     <h4> Question: {{question.body}}</h4>
                     <p>from: {{question.memberId}}</p>
-                    <p>Qid: {{question.$id}}</p>
 
+                    <div class="btn-group">
+                    <button ui-sref="question({id: question.$id})" type="button" class="btn btn-info">More</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteQuestion(question)">Delete</button>
+                    </div>    
                 </div>
                 </div>
             </div>
@@ -43,6 +39,7 @@
     </div>
 </div>
 
+<!--
 <p>If we are logged in we should have a member obj {{member}}</p>
 
 <h2>Responsibilites</h2>
@@ -52,3 +49,4 @@
 <p>The questions can be orderby max upvotes or by date created depending on the users choice.</p>
 <p>The question can be filtered based upon tags, unanswered</p>
 <p>No voting from this page.</p>
+-->
