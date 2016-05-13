@@ -39,11 +39,11 @@
                 </div>
                 <div class="input-group">
                         <div class="input-group-btn">
-                            <button class="btn btn-success" ng-click='addResCom(newResCom)'>Add comment</button>
+                            <button class="btn btn-success" ng-click='addResCom(newResCom, res)'>Add comment</button>
                         </div>
                         <input ng-model='newResCom.body'type="text" class="form-control">
                 </div>
-                <div class="list-group" ng-repeat="res in responses.comments">
+                <div class="list-group" ng-repeat="res in rescoms">
                     <div class="list-group-item" >
                             <span class="badge" ng-click="deleteResCom(resCom)">X</span>
                             <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>

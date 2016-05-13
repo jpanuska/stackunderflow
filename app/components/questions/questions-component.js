@@ -79,7 +79,7 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	$scope.question = question;
 	$scope.comments = comments;
 	$scope.responses = responses;
-	$scope.rescoms = rescoms;
+
 	
 	
 	 $scope.addComment = function(newComment){
@@ -112,12 +112,12 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	  }
 	  
 	 $scope.deleteResponse = function (res){
-		 $scope.responses.$remove(res);	 
+		// $scope.responses.$remove(res);	 
 	 }
 	 
 	 $scope.addResCom = function (newResCom, res){
 		 newResCom.posted = Date.now();
-		 newResCom.memberId = $rootScope.member.$id;
+		 newResCom.memberId = $rootScope.member.id;
 		 newResCom.resId = $scope.res.$id;
 		 debugger
 		 $scope.rescoms.$add(newResCom).then(function(ref){
