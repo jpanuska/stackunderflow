@@ -32,7 +32,7 @@
                    
                     <h3>Title: {{question.title}}</h3>
                     <h4> Question: {{question.body}}</h4>
-                    <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} </span></p>
+                    <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
                     <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
 
                     <div class="btn-group">

@@ -108,10 +108,12 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	  }
 	  
 	 $scope.deleteResponse = function (res){
-		// $scope.responses.$remove(res);	 
+		$scope.responses.$remove(res);	 
 	 }
-	 
-	 $scope.addResCom = function (newResCom, res){
+
+ 
+
+/*	 $scope.addResCom = function (newResCom, res){
 		 newResCom.posted = Date.now();
 		 newResCom.memberId = $rootScope.member.$id;
 		 this.res = res;
@@ -122,7 +124,9 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 			$rootScope.member.$save();
 			$scope.newResponse = null;
 	 })
-	 }
+	 } */
+
+});	
 	 
 
 	 /* question Schema
@@ -138,4 +142,3 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 * } 
 	 */
 	
-});

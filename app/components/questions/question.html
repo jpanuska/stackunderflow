@@ -6,7 +6,7 @@
             <h2>T: {{question.title}}  </h2>
                 <p> Q:{{question.body}}   </p>
                 <p> Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
-                <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} , </span></p>
+                <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
 
                 
            <div class="input-group">
@@ -16,9 +16,7 @@
                 </div>
                 <input ng-model='newMes.body'type="text" class="form-control">
            </div>
-       </div>
-
-       <div class="well ">     
+            <h3>Comments to the question</h3>
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
                     <span class="badge" ng-click="deleteComment(com)">X</span>                   
@@ -30,7 +28,7 @@
      
         
         <div class="well">
-            
+           <h3>Responses to the question</h3> 
          <div class="list-group" ng-repeat="res in responses">
                 <div class="list-group-item" >
                         <span class="badge" ng-click="deleteResponse(res)">X</span>
