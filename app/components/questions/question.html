@@ -1,24 +1,36 @@
 <div class="container">
     <div class="row">
         
-        <div class="panel panel-default">
-            
-          <div class="panel-heading">
-            
-                <h2>T: {{question.title}}  </h2>
+        <div class="well"> 
+            <h2>T: {{question.title}}  </h2>
                 <p> Q:{{question.body}}   </p>
                 <p> Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
                 <p>Tags: <span ng-repeat="tag in question.tags"> {{tag}} , </span></p>
-                <a ng-click='showComs = !showComs'>Add a comment</a>
-                <a ng-click='showRes = !showRes'>Add a response</a>
 
-                <form ng-show='showComs' ng-submit="addComment(newComment)">
+                
+           <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click='addComment(newMes)'>Add comment</button>
+                    <button class='btn btn-warning' ng-click='addResponse(newMes)'>Add response</button>
+                </div>
+                <input ng-model='newMes.body'type="text" class="form-control">
+            </div>
+        </div>
+        
+<!--        <div class="panel panel-default">
+            
+          <div class="panel-heading">
+            
+                
+               <a ng-click='showComs = !showComs'>Add a comment</a>
+                <a ng-click='showRes = !showRes'>Add a response</a>
+              <form ng-show='showComs' ng-submit="addComment(newComment)">
                     <div  class="form-group">
                 <input ng-model='newComment.body' type="text" class="form-control" placeholder="Your comment">
                     </div>
                     <button type="submit" class="btn btn-success">Save</button>
                     <button type="reset"  class="btn btn-danger">Clean</button>
-                </form>   
+           </form>   
 
             <form ng-show='showRes' ng-submit="addResponse(newRes)">
                 <div  class="form-group">
@@ -30,8 +42,9 @@
 
           </div>
                      
-        <div class="panel-body">
-            
+        <div class="panel-body">-->
+
+       <div class="well">     
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
                     
@@ -44,19 +57,25 @@
                 </div>
              </div>
         </div>
-     </div>
+     
         
-    <div class="list-group">
-         <div class="list-group-item" ng-repeat="res in responses">
+        <div class="well">
+            
+            <div class="list-group">
+            <div class="list-group-item" ng-repeat="res in responses">
                     
                     <h3>Posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
                     <p>{{res.body}}</p>
                     <div class="btn-group">
-                    <button type="button" class="btn btn-danger" ng-click="deleteComment(res)">Delete</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteResponse(res)">Delete</button>
                     </div>    
 
+            </div>
+            </div>
         </div>
-     </div>
+
+        
+
         
         
         

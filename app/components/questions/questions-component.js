@@ -92,8 +92,14 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	     debugger
 		 $rootScope.member.comments[ref.key()] = ref.key();
 	     $rootScope.member.$save();
+		 $scope.newComment = null;
 	   })
 	  }
+	  
+	  $scope.deleteComment = function (com){
+		  debugger
+		 $scope.comments.$remove(com);
+	 }
 	  
 	 $scope.addResponse = function(newResponse){
 		newResponse.posted = Date.now();
@@ -106,17 +112,17 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	     debugger
 		 $rootScope.member.responses[ref.key()] = ref.key();
 	     $rootScope.member.$save();
+		 $scope.newResponse = null;
 	   })
 	  }
 	  
 	 $scope.deleteResponse = function (res){
+		 debugger
 		 $scope.responses.$remove(res);
-		 $scope.res = null;
+		 
 	 }
 	 
-	 $scope.deleteQuestion = function (com){
-		 $scope.comments.$remove(com);
-	 }
+
 	 /* question Schema
 	 * {
 	 *  title: string,
