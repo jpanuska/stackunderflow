@@ -79,6 +79,7 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	$scope.question = question;
 	$scope.comments = comments;
 	$scope.responses = responses;
+	$scope.rescoms = rescoms;
 	
 	
 	 $scope.addComment = function(newComment){
@@ -114,12 +115,14 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 		 $scope.responses.$remove(res);	 
 	 }
 	 
-	 $scope.addResCom = function (newResCom){
+	 $scope.addResCom = function (newResCom, res){
 		 newResCom.posted = Date.now();
 		 newResCom.memberId = $rootScope.member.$id;
-		 $scope.responses.comments.$add(newResCom).then(function(ref){
-		 	$rootScope.member.responses.comments = $rootScope.member.responses.comments || {};
-			$rootScope.member.responses.comments[ref.key()] = ref.key();
+		 newResCom.resId = $scope.res.$id;
+		 debugger
+		 $scope.rescoms.$add(newResCom).then(function(ref){
+		 	$rootScope.member.rescoms = $rootScope.member.rescoms || {};
+			$rootScope.member.rescoms[ref.key()] = ref.key();
 			$rootScope.member.$save();
 			$scope.newResponse = null;
 	 })
