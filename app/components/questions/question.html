@@ -17,14 +17,12 @@
                 <input ng-model='newMes.body'type="text" class="form-control">
            </div>
        </div>
-    </div>  
-          
-    <div class="row">
+
        <div class="well">     
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
                     
-                    <p>Posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h3>
+                    <p>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h3>
                     <p>{{com.body}}</p>
 
                     <div class="btn-group">
@@ -40,7 +38,7 @@
             <div class="list-group">
             <div class="list-group-item" ng-repeat="res in responses">
                     
-                    <h3>Posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
+                    <h3>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
                     <p>{{res.body}}</p>
                     <div class="btn-group">
                     <button type="button" class="btn btn-danger" ng-click="deleteResponse(res)">Delete</button>
@@ -51,7 +49,7 @@
         </div>
 
 
-        </div></div>
+</div>
 
 
 
