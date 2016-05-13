@@ -46,18 +46,14 @@
         </div>
      </div>
         
-<div>
-            fghfghfghfhfghfghfghfhfghfghfghfghfghfghfghfgh
-               <div class="list-group">
-                <div class="list-group-item" ng-repeat="res in responses">
+    <div class="list-group">
+         <div class="list-group-item" ng-repeat="res in responses">
                     
                     <h3>Posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
                     <p>{{res.body}}</p>
-
                     <div class="btn-group">
                     <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
                     </div>    
-</div>
 
         </div>
      </div>

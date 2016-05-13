@@ -108,6 +108,15 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	     $rootScope.member.$save();
 	   })
 	  }
+	  
+	 $scope.deleteResponse = function (res){
+		 $scope.responses.$remove(res);
+		 $scope.res = null;
+	 }
+	 
+	 $scope.deleteQuestion = function (com){
+		 $scope.comments.$remove(com);
+	 }
 	 /* question Schema
 	 * {
 	 *  title: string,
