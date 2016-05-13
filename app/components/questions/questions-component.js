@@ -14,9 +14,9 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	    newQuestion.memberId = $rootScope.member.$id;
 		newQuestion.tags = newQuestion.tag.split(" ");
 		newQuestion.tag = null;
-		debugger
+		newQuestion.answeredOn = '';
+		newQuestion.answered = false;
 	  	$scope.questions.$add(newQuestion).then(function(ref){
-	  	//Add the newly added question to the member object	
 	  	$rootScope.member.questions = $rootScope.member.questions || {};
 	     //Another Dictonary structure all we are doing is adding the questionId to the member.questions dictionary.
 	     //To avoid duplicating data in our database we only store the questionId instead of the entire question again 
@@ -26,9 +26,18 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	  })
 	 }
 	 
+	 
+	 $scope.getlength = function(q){
+		 q.responses ? q.responseCount = Object.keys(q.responses).length : q.responseCount = 0;
+		 q.comments  ? q.commentCount  = Object.keys(q.comments).length : q.commentCount = 0;
+	 }
+	 
+	 
 	 $scope.deleteQuestion = function (question){
 		 $scope.questions.$remove(question);
 	 }
+	 
+	 
 	  /*
 	 * question Schema
 	 * {
@@ -46,7 +55,7 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	
 });
 
-app.controller('QuestionController', function($rootScope, $scope, question, comments, responses){
+app.controller('QuestionController', function($rootScope, $scope, question, comments, responses, $firebaseArray){
 	/**
 	 * The question, comments, responses arguments being passed into the controller  ^^^^^^^
 	 * come from the question route resolve,
@@ -83,7 +92,8 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	
 	 $scope.addComment = function(newComment){
 		newComment.posted = Date.now();
-	  	newComment.memberId = $rootScope.member.$id;	
+	  	newComment.memberId = $rootScope.member.$id;
+
 	  	$scope.comments.$add(newComment).then(function(ref){	
 	  	  	$rootScope.member.comments = $rootScope.member.comments || {};
 			$rootScope.member.comments[ref.key()] = ref.key();
@@ -99,9 +109,14 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 $scope.addResponse = function(newResponse){
 		newResponse.posted = Date.now();
 	  	newResponse.memberId = $rootScope.member.$id;
+		question.answered = true;
+		question.answeredOn = Date.now();
+		question.$save();
+		debugger
 	  	$scope.responses.$add(newResponse).then(function(ref){
 			$rootScope.member.responses = $rootScope.member.responses || {};
 			$rootScope.member.responses[ref.key()] = ref.key();
+			$rootScope.member.$save();
 			$rootScope.member.$save();
 			$scope.newResponse = null;
 	   })
@@ -112,19 +127,21 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 }
 
  
-
-/*	 $scope.addResCom = function (newResCom, res){
-		 newResCom.posted = Date.now();
-		 newResCom.memberId = $rootScope.member.$id;
-		 this.res = res;
+	 $scope.addResCom = function (newCommentToResponse, res){
 		 debugger
-		 res.comments.$add(newResCom).then(function(ref){
-		 	$rootScope.member.res.comments = $rootScope.member.res.comments || {};
-			$rootScope.member.res.comments[ref.key()] = ref.key();
+		 newCommentToResponse.posted = Date.now();
+		 newCommentToResponse.memberId = $rootScope.member.$id;
+		 var responseCommentsRef = question.$ref().child('responses').child(res.$id).child('comments');
+		 var responsesComments = $firebaseArray(responseCommentsRef);
+		 
+		 responsesComments.$add(newCommentToResponse).then(function(ref){
+		 	$rootScope.member.comments = $rootScope.member.comments || {};
+			$rootScope.member.comments[ref.key()] = ref.key();
 			$rootScope.member.$save();
-			$scope.newResponse = null;
-	 })
-	 } */
+		
+	 	})
+	 	$scope.newCommentToResponse = null;
+	 	}
 
 });	
 	 

@@ -2,13 +2,14 @@
     
     <div class="row">
         
-        <div class="well"> 
-            <h2>T: {{question.title}}  </h2>
-                <p> Q:{{question.body}}   </p>
-                <p> Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
-                <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
+        <div class="well">
 
-                
+                <h2>T: {{question.title}}  </h2>
+                <h3>Q: {{question.body}}   </h3>
+                <p>Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
+                <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
+                <p>Answered: {{question.answeredOn}}</p>
+
            <div class="input-group">
                 <div class="input-group-btn">
                     <button class="btn btn-success" ng-click='addComment(newMes)'>Add comment</button>
@@ -19,6 +20,8 @@
             <h3>Comments to the question</h3>
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
+                    <span class="badge" ng-click="changeVote(+1)">+</span>  
+                    <span class="badge" ng-click="changeVote(-1)">-</span>
                     <span class="badge" ng-click="deleteComment(com)">X</span>                   
                     <h6>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h6>
                     <p>{{com.body}}</p>   
@@ -37,17 +40,18 @@
                 </div>
                 <div class="input-group">
                         <div class="input-group-btn">
-                            <button class="btn btn-success" ng-click='addResCom(newResCom, res)'>Add comment</button>
+                            <button class="btn btn-success" ng-click='addRescom(newRescom, res)'>Add comment</button>
                         </div>
-                        <input ng-model='newResCom.body'type="text" class="form-control">
+                        <input ng-model='newRescom.body'type="text" class="form-control">
                 </div>
-                <div class="list-group" ng-repeat="res in rescoms">
+                <div class="list-group" ng-repeat="rescom in responsesComments">
                     <div class="list-group-item" >
-                            <span class="badge" ng-click="deleteResCom(resCom)">X</span>
-                            <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
-                            <p>{{res.body}}</p>
+                            <span class="badge" ng-click="deleteResCom(rescom)">X</span>
+                            <h6>Response posted by {{rescom.memberId}} at {{rescom.posted | date: 'short'}}</h6>
+                            <p>{{rescom.body}}</p>
                     </div>
                 </div>
+                
         </div>
        </div>
             
