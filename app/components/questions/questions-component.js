@@ -127,21 +127,27 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 }
 
  
-	 $scope.addResCom = function (newCommentToResponse, res){
-		 debugger
+	 $scope.addRescom = function (newCommentToResponse, res){
+		 
 		 newCommentToResponse.posted = Date.now();
 		 newCommentToResponse.memberId = $rootScope.member.$id;
 		 var responseCommentsRef = question.$ref().child('responses').child(res.$id).child('comments');
 		 var responsesComments = $firebaseArray(responseCommentsRef);
-		 
+		 debugger
 		 responsesComments.$add(newCommentToResponse).then(function(ref){
 		 	$rootScope.member.comments = $rootScope.member.comments || {};
 			$rootScope.member.comments[ref.key()] = ref.key();
+			newCommentToResponse.id = ref.key()
+			ref.update(newCommentToResponse)
 			$rootScope.member.$save();
-		
+			$scope.newCommentToResponse = null;
 	 	})
-	 	$scope.newCommentToResponse = null;
+	 	
 	 	}
+		 
+	$scope.deleteRescom = function (rescom, res){
+		question.$ref().child('responses').child(res.$id).child('comments').child(rescom.id).remove()
+	}
 
 });	
 	 

@@ -44,10 +44,10 @@
                         </div>
                         <input ng-model='newRescom.body'type="text" class="form-control">
                 </div>
-                <div class="list-group" ng-repeat="rescom in responsesComments">
-                    <div class="list-group-item" >
-                            <span class="badge" ng-click="deleteResCom(rescom)">X</span>
-                            <h6>Response posted by {{rescom.memberId}} at {{rescom.posted | date: 'short'}}</h6>
+                <div class="list-group" >
+                    <div class="list-group-item" ng-repeat="rescom in res.comments">
+                            <span class="badge" ng-click="deleteRescom(rescom, res)">X</span>
+                            <h6>Comment posted by {{rescom.memberId}} at {{rescom.posted | date: 'short'}}</h6>
                             <p>{{rescom.body}}</p>
                     </div>
                 </div>
