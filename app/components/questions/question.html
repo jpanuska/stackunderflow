@@ -18,7 +18,7 @@
            </div>
        </div>
 
-       <div class="well">     
+       <div class="well ">     
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
                     <span class="badge" ng-click="deleteComment(com)">X</span>                   
@@ -34,7 +34,7 @@
          <div class="list-group" ng-repeat="res in responses">
             <div class="list-group-item" >
                     <span class="badge" ng-click="deleteResponse(res)">X</span>
-                    <p>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
+                    <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
                     <p>{{res.body}}</p>
             </div>
             </div>
