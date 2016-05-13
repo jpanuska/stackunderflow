@@ -22,7 +22,7 @@
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
                     <span class="badge" ng-click="deleteComment(com)">X</span>                   
-                    <p>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h3>
+                    <h6>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h6>
                     <p>{{com.body}}</p>   
                 </div>
              </div>
@@ -32,12 +32,19 @@
         <div class="well">
             
          <div class="list-group" ng-repeat="res in responses">
-            <div class="list-group-item" >
-                    <span class="badge" ng-click="deleteResponse(res)">X</span>
-                    <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
-                    <p>{{res.body}}</p>
+                <div class="list-group-item" >
+                        <span class="badge" ng-click="deleteResponse(res)">X</span>
+                        <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
+                        <p>{{res.body}}</p>
+                </div>
             </div>
-            </div>
+            
+        <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click='addResCom(newResCom)'>Add comment</button>
+                </div>
+                <input ng-model='newResCom.body'type="text" class="form-control">
+           </div> 
         </div>
 
 
