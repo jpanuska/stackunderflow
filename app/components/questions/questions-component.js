@@ -118,8 +118,8 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 		 newResCom.posted = Date.now();
 		 newResCom.memberId = $rootScope.member.$id;
 		 $scope.responses.comments.$add(newResCom).then(function(ref){
-		 	$rootScope.member.responses = $rootScope.member.responses || {};
-			$rootScope.member.responses[ref.key()] = ref.key();
+		 	$rootScope.member.responses.comments = $rootScope.member.responses.comments || {};
+			$rootScope.member.responses.comments[ref.key()] = ref.key();
 			$rootScope.member.$save();
 			$scope.newResponse = null;
 	 })
