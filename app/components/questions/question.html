@@ -39,7 +39,7 @@
                     <p>{{com.body}}</p>
 
                     <div class="btn-group">
-                    <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteComment(com)">Delete</button>
                     </div>    
                 </div>
              </div>
@@ -52,7 +52,7 @@
                     <h3>Posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
                     <p>{{res.body}}</p>
                     <div class="btn-group">
-                    <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteComment(res)">Delete</button>
                     </div>    
 
         </div>
