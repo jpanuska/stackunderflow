@@ -2,6 +2,7 @@
     <div class="row">
         
         <div class="panel panel-default">
+            
           <div class="panel-heading">
             
                 <h2>T: {{question.title}}  </h2>
@@ -27,30 +28,28 @@
                 <button type="reset"  class="btn btn-danger">Clean</button>
              </form>   
 
-        </div>
+          </div>
                      
         <div class="panel-body">
             
-                <div class="list-group">
-                <div class="list-group-item" ng-repeat="comment in question.comments">
+            <div class="list-group">
+                <div class="list-group-item" ng-repeat="com in comments">
                     
-                    <p>Posted by {{comment.memberId}} at {{comment.posted | date: 'short'}}</h3>
-                    <p>{{comment.body}}</p>
+                    <p>Posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h3>
+                    <p>{{com.body}}</p>
 
                     <div class="btn-group">
                     <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
                     </div>    
                 </div>
-                </div>
-
+             </div>
         </div>
      </div>
         
-     <div class="panel panel-success">
-        <div class="panel-body">
-            
+<div>
+            fghfghfghfhfghfghfghfhfghfghfghfghfghfghfghfgh
                <div class="list-group">
-                <div class="list-group-item" ng-repeat="res in question.responses">
+                <div class="list-group-item" ng-repeat="res in responses">
                     
                     <h3>Posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
                     <p>{{res.body}}</p>
@@ -58,8 +57,8 @@
                     <div class="btn-group">
                     <button type="button" class="btn btn-danger" ng-click="deleteComment(comment)">Delete</button>
                     </div>    
-                </div>
-                </div>
+</div>
+
         </div>
      </div>
         
