@@ -21,13 +21,9 @@
        <div class="well">     
             <div class="list-group">
                 <div class="list-group-item" ng-repeat="com in comments">
-                    
+                    <span class="badge" ng-click="deleteComment(com)">X</span>                   
                     <p>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h3>
-                    <p>{{com.body}}</p>
-
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-danger" ng-click="deleteComment(com)">Delete</button>
-                    </div>    
+                    <p>{{com.body}}</p>   
                 </div>
              </div>
         </div>
@@ -37,13 +33,9 @@
             
          <div class="list-group" ng-repeat="res in responses">
             <div class="list-group-item" >
-                    
-                    <h3>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
+                    <span class="badge" ng-click="deleteResponse(res)">X</span>
+                    <p>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h3>
                     <p>{{res.body}}</p>
-                    <div class="btn-group">
-                    <button type="button" class="btn btn-danger" ng-click="deleteResponse(res)">Delete</button>
-                    </div>    
-
             </div>
             </div>
         </div>
