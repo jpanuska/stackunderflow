@@ -89,7 +89,6 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	  	  $rootScope.member.comments = $rootScope.member.comments || {};
 	     //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
 	     //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
-	     debugger
 		 $rootScope.member.comments[ref.key()] = ref.key();
 	     $rootScope.member.$save();
 		 $scope.newComment = null;
@@ -97,27 +96,21 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	  }
 	  
 	  $scope.deleteComment = function (com){
-		  debugger
 		 $scope.comments.$remove(com);
 	 }
 	  
 	 $scope.addResponse = function(newResponse){
 		newResponse.posted = Date.now();
 	  	newResponse.memberId = $rootScope.member.$id;
-	  	$scope.comments.$add(newResponse).then(function(ref){
-	  	  //Add the newly added comment to the member object	
-	  	  $rootScope.member.responses = $rootScope.member.responses || {};
-	     //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
-	     //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
-	     debugger
-		 $rootScope.member.responses[ref.key()] = ref.key();
-	     $rootScope.member.$save();
-		 $scope.newResponse = null;
+	  	$scope.responses.$add(newResponse).then(function(ref){
+			$rootScope.member.responses = $rootScope.member.responses || {};
+			$rootScope.member.responses[ref.key()] = ref.key();
+			$rootScope.member.$save();
+			$scope.newResponse = null;
 	   })
 	  }
 	  
 	 $scope.deleteResponse = function (res){
-		 debugger
 		 $scope.responses.$remove(res);
 		 
 	 }
