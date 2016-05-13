@@ -1,4 +1,7 @@
 app.controller('DashboardController', function($rootScope, $scope){
+	
+	var x = $rootScope.member;
+	console.log(x);
 	/**
 	 * To edit the member object you must go through $rootScope.member
 	 * $rootScope.member is a $firebaseObject from AngularFire 

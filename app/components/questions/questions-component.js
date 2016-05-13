@@ -5,7 +5,6 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	 * https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray
 	 * */
 	$scope.tags = DataService.getTags();
-	$scope.tags = ['css','html', 'js'];
 	$scope.questions = DataService.getQuestions();
 
 	
@@ -85,14 +84,11 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 $scope.addComment = function(newComment){
 		newComment.posted = Date.now();
 	  	newComment.memberId = $rootScope.member.$id;	
-	  	$scope.comments.$add(newComment).then(function(ref){
-	  	  //Add the newly added comment to the member object	
-	  	  $rootScope.member.comments = $rootScope.member.comments || {};
-	     //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
-	     //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
-		 $rootScope.member.comments[ref.key()] = ref.key();
-	     $rootScope.member.$save();
-		 $scope.newComment = null;
+	  	$scope.comments.$add(newComment).then(function(ref){	
+	  	  	$rootScope.member.comments = $rootScope.member.comments || {};
+			$rootScope.member.comments[ref.key()] = ref.key();
+			$rootScope.member.$save();
+			$scope.newComment = null;
 	   })
 	  }
 	  
@@ -118,11 +114,11 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 $scope.addResCom = function (newResCom, res){
 		 newResCom.posted = Date.now();
 		 newResCom.memberId = $rootScope.member.$id;
-		 newResCom.resId = $scope.res.id;
+		 this.res = res;
 		 debugger
-		 $scope.rescoms.$add(newResCom).then(function(ref){
-		 	$rootScope.member.rescoms = $rootScope.member.rescoms || {};
-			$rootScope.member.rescoms[ref.key()] = ref.key();
+		 res.comments.$add(newResCom).then(function(ref){
+		 	$rootScope.member.res.comments = $rootScope.member.res.comments || {};
+			$rootScope.member.res.comments[ref.key()] = ref.key();
 			$rootScope.member.$save();
 			$scope.newResponse = null;
 	 })
