@@ -117,8 +117,8 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 
 	 $scope.addResCom = function (newResCom, res){
 		 newResCom.posted = Date.now();
-		 newResCom.memberId = $rootScope.member.id;
-		 newResCom.resId = $scope.res.$id;
+		 newResCom.memberId = $rootScope.member.$id;
+		 newResCom.resId = $scope.res.id;
 		 debugger
 		 $scope.rescoms.$add(newResCom).then(function(ref){
 		 	$rootScope.member.rescoms = $rootScope.member.rescoms || {};
