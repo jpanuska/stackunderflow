@@ -37,18 +37,23 @@
                         <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
                         <p>{{res.body}}</p>
                 </div>
-            </div>
-            
-        <div class="input-group">
-                <div class="input-group-btn">
-                    <button class="btn btn-success" ng-click='addResCom(newResCom)'>Add comment</button>
+                <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-success" ng-click='addResCom(newResCom)'>Add comment</button>
+                        </div>
+                        <input ng-model='newResCom.body'type="text" class="form-control">
                 </div>
-                <input ng-model='newResCom.body'type="text" class="form-control">
-           </div> 
+                <div class="list-group" ng-repeat="res in responses">
+                <div class="list-group-item" >
+                        <span class="badge" ng-click="deleteResCom(resCom)">X</span>
+                        <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
+                        <p>{{res.body}}</p>
+                </div></div>
         </div>
+       </div>
+            
 
-
-</div>
+</div></div>
 
 
 
