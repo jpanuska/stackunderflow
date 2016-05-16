@@ -12,10 +12,12 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 		
 		newQuestion.posted = Date.now();
 	    newQuestion.memberId = $rootScope.member.$id;
-		newQuestion.tags = newQuestion.tag.split(" ");
+		newQuestion.tags = newQuestion.tag.replace(/,/g, ' ').split(" ");
 		newQuestion.tag = null;
 		newQuestion.answeredOn = '';
 		newQuestion.answered = false;
+		newQuestion.votes = {};
+		newQuestion.rating = 0;
 	  	$scope.questions.$add(newQuestion).then(function(ref){
 	  	$rootScope.member.questions = $rootScope.member.questions || {};
 	     //Another Dictonary structure all we are doing is adding the questionId to the member.questions dictionary.
@@ -46,8 +48,8 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 	 *  votes: {memberId: number}, -> ??
 	 *  author: string,	- > from scope
 	 *  posted: date,	- > from function
-	 *  answeredOn: date, - > from ????
-	 *  answered: bool,   -> from ???
+	 *  answeredOn: date, - > from questin
+	 *  answered: bool,   -> from question
 	 *	tags: [tags] 	  -> scope
 	 * } 
 	 */
@@ -147,6 +149,19 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 		 
 	$scope.deleteRescom = function (rescom, res){
 		question.$ref().child('responses').child(res.$id).child('comments').child(rescom.id).remove()
+	}
+	
+	$scope.questionRate = function (smth){
+		debugger
+		question.rating =0
+		question.votes = question.votes || {};
+		question.votes[$rootScope.member.$id] = smth;
+		for (var id  in question.votes){
+			question.rating += question.votes[id];
+		}
+		
+		question.$save();
+		$rootScope.member.$save();
 	}
 
 });	

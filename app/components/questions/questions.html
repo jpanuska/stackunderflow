@@ -27,23 +27,33 @@
        </div>
 
        <div class="panel-body">
-                <div class="list-group">
+           
+            <div class="list-group">
                 <div class="list-group-item" ng-repeat="question in questions" ng-init="getlength(question)">
-                   
-                    <h3>Title: {{question.title}}</h3>
-                    <h4> Question: {{question.body}}</h4>
-                    <p>Tags: <span ng-repeat="tag in question.tags track by $index" class='span-tag'> {{tag}} </span></p>
-                    <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
-                    <p>Answered: {{question.answeredOn | date:'short'}}</p>
-                    <p>Comments: {{question.commentCount}}</p>
-                    <p>Responses:{{question.responseCount}}</p>
+                    <div class="col-md-8">                 
+                        <h3>Title: {{question.title}}</h3>
+                        <h4>Question: {{question.body}}</h4>
+                        <p>Tags: <span ng-repeat="tag in question.tags track by $index" class='span-tag'> {{tag}} </span></p>
+                        <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
 
-                    <div class="btn-group">
-                    <button ui-sref="question({id: question.$id})" type="button" class="btn btn-info">More</button>
-                    <button type="button" class="btn btn-danger" ng-click="deleteQuestion(question)">Delete</button>
-                    </div>    
+                    </div>
+
+                    <div class="col-md-4">
+                        <p>Answered: {{question.answered ? "yes" : "no"}}</p>
+                        <p>Comments: {{question.commentCount}}  </p>
+                        <p>Responses: {{question.responseCount}}</p>
+                        <p>Rating: {{question.rating}}  </p>
+                    </div>
+
+                         <div class="btn-group">
+                         <button ui-sref="question({id: question.$id})" type="button" class="btn btn-info">More</button>
+                         <button type="button" class="btn btn-danger" ng-click="deleteQuestion(question)">Delete</button>
+                         </div>
+
+
+
                 </div>
-                </div>
+           </div>
         </div>
         </div>
    </div>

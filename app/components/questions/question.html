@@ -3,12 +3,27 @@
     <div class="row">
         
         <div class="well">
-
-                <h2>T: {{question.title}}  </h2>
-                <h3>Q: {{question.body}}   </h3>
-                <p>Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
-                <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
-                <p>Answered: {{question.answeredOn}}</p>
+            <div class="row">
+            <div class="col-md-12">
+               <h2>T: {{question.title}}  </h2>
+               <h3>Q: {{question.body}}   </h3>
+            </div>
+            <div class="col-md-8">
+               <p>Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
+               <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
+               <p>Last response: {{question.answeredOn | date: 'short'}}</p>
+           </div>
+            <div class="col-md-1">
+               <a ng-click="questionRate(+1)"><img src="http://vignette1.wikia.nocookie.net/tinycastle/images/8/89/Alarm-Arrow-Up-icon.png" alt="" width="30px"></a>
+            </div>
+            <div class="col-md-1">
+                    {{question.rating || "0"}}  
+            </div>
+            <div class="col-md-1">
+               <a ng-click="questionRate(-1)"><img src="http://www.veryicon.com/icon/ico/System/Icons8%20Metro%20Style/Arrows%20Down%20circular.ico" width="30px" alt=""></p></a>
+            </div>
+           
+           </div>
 
            <div class="input-group">
                 <div class="input-group-btn">
