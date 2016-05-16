@@ -1,48 +1,70 @@
 <div class="container">
 	<div class="row">
 		<div class="jumbotron">
-			Hello 
-			{{member.username}}
+			<h1>Hello, {{member.username}}!</h1>
+			<span>
+				<button class='btn btn-danger' ng-click='dc.show = true'>Edit My Profile</button>
+			</span>
 		</div>
 	</div>
 </div>
 
+<div>
+	{{member}}
+</div>
 
-<h1>Having a profile that you can't edit it boring</h1>
-<p>member Object: {{member}}</p>
-
-<p>This page needs some flair</p>
-<p>Try rendering to the screen all of the fields that will eventually be added to the $rootScope.member object</p>
-<p>For the MemberObject Schema look at the comments on this file</p>
-
-<!--
-	
-	Members are requesting a form where they can edit their memberObject.
-	items denoted with ** should be stored on the memberObject
-	howerever the edit form should not allow the Member to change these values 
-	
-	MemberObjectSchema
-	{
-		username: string,
-		firstName: string,
-		lastName: string,
-		imgUrl:  string,
-		country: string,
-		bio: string,
-		websiteUrl: string,
-		github: string,
-		twitterHandle: string,
-		favoriteTags: [tag], // <--- BONUS: use commas in the input field to add multiple tags. Or Look at multiselect inputs
-		**accountCreated: date,
-		**upVotes: number,
-		**downVotes: number,
-		**reputation: number,
-		**questions: [questionId]
-		**answers: [answerId],
-		**comments: [commentId]
-		//Add anything else you think would be a cool feature to track
-	}
-
-	WARNING: Firebase will not allow you to add null properties to any object. When you need the specific field you can simple create it and pass its value. 	
-
--->
+<div class='container-fluid' ng-show='dc.show'>
+	<form ng-submit='dc.editMember(member)' class='form'>
+		<div class='form-group'>
+			<label for="username">Username</label>
+			<input type="text" placeholder='Username' ng-model='member.username'>
+		</div>
+		
+		<div class='form-group'>
+			<label for="firstName">First Name</label>
+			<input type="text" placeholder='First name' ng-model='member.firstName'>
+		</div>
+		
+		<div class="form-group">
+			<label for="lastName">Last Name</label>
+			<input type="text" placeholder='Last name' ng-model='member.lastName'>
+		</div>
+		
+		<div class="form-group">
+			<label for="imgUrl">Profile Image</label>
+			<input type="text" placeholder='Image URL' ng-model='member.imgUrl'>
+		</div>
+		
+		<div class='form-group'>
+			<label for="country">Country</label>
+			<input type="text" placeholder='Country' ng-model='member.country'>
+		</div>
+		
+		<div class="form-group">
+			<label for="bio">Bio</label>
+			<input type="text" placeholder='Decsribe yourself' ng-model='member.bio'>
+		</div>
+		
+		<div class="form-group">
+			<label for="websiteUrl">Website Url</label>
+			<input type="text" placeholder='linkedin, resume, stackoverflow, etc.' ng-model='member.websiteUrl'>
+		</div>
+		
+		<div class='from-group'>
+			<label for="github">Github</label>
+			<input type="text" placeholder='Github URL' ng-model='member.github'>
+		</div>
+		
+		<div class="form-group">
+			<label for="twitterHandle">Twitter Handle</label>
+			<input type="text" placeholder='Twitter Handle' ng-model='member.twitterHandle'>
+		</div>
+		
+		<div class="form-group">
+			<label for="favoriteTags">Favorite Tags</label>
+			<input type="text" placeHolder='separate tags with a comma' ng-model='member.favoriteTags'>
+		</div>
+		
+		<button type='submit' ng-click='dc.show = false' class="btn btn-primary">Save</button>
+	</form>
+</div>
