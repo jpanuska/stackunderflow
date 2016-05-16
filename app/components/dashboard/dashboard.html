@@ -1,68 +1,91 @@
 <div class="container">
 	<div class="row">
 		<div class="jumbotron">
-			<h1>Hello, {{member.username}}!</h1>
-			<span>
+			<div class='row text-center'>
+				<h1>Hello, {{member.username}}!</h1>
+			</div>
+			<span class='row'>
 				<button class='btn btn-danger' ng-click='dc.show = true'>Edit My Profile</button>
 			</span>
 		</div>
 	</div>
 </div>
 
-<div>
-	{{member}}
+<div class='panel panel-default' ng-show='!dc.show'>
+	<div class='panel-heading row'>
+		<div class='col-xs-2'>
+			<p>Username: {{member.username}}</p>
+			<img class="prof-picture" src="{{member.imgUrl}}" alt="">
+		</div>
+		<div class="col-xs-4">
+			<h1>{{member.firstName}} {{member.lastName}}</h1>
+			<h4>Country: {{member.country || 'N/A'}}</h4>
+			<a ng-show="member.github" href="{{member.github}}"><img height='50px' src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/PEO-octocat-1.svg/2000px-PEO-octocat-1.svg.png" alt=""></a>
+			<a ng-show='member.websiteUrl' href="{{member.websiteUrl}}"><img height='50px' src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Home_icon-black.svg/1000px-Home_icon-black.svg.png" alt=""></a>
+			<a ng-show='member.twitterHandle' href="http://twitter.com/{{member.twitterHandle}}"><img height='50px' src="https://pixabay.com/static/uploads/photo/2014/04/03/11/53/twitter-312464_960_720.png" alt=""></a>
+		</div>
+	</div>
+	
+	<div class='panel-body'>
+		<h5>{{member.bio}}</h5>
+	</div>
+	
+	<div class="panel-footer">
+		<h5>Following tags: {{member.favoriteTags.join(",")}}</h5>
+	</div>
+	
 </div>
 
 <div class='container-fluid' ng-show='dc.show'>
 	<form ng-submit='dc.editMember(member)' class='form'>
-		<div class='form-group'>
-			<label for="username">Username</label>
-			<input type="text" placeholder='Username' ng-model='member.username'>
+		<div class='form-group row'>
+			<label class='col-xs-2' for="username">Username</label>
+			<input class='col-xs-4' type="text" placeholder='Username' ng-model='member.username'>
 		</div>
 		
-		<div class='form-group'>
-			<label for="firstName">First Name</label>
-			<input type="text" placeholder='First name' ng-model='member.firstName'>
+		<div class='form-group row'>
+			<label class='col-xs-2' for="firstName">First Name</label>
+			<input class='col-xs-4' type="text" placeholder='First name' ng-model='member.firstName'>
 		</div>
 		
-		<div class="form-group">
-			<label for="lastName">Last Name</label>
-			<input type="text" placeholder='Last name' ng-model='member.lastName'>
+		<div class="form-group row">
+			<label class='col-xs-2' for="lastName">Last Name</label>
+			<input class='col-xs-4' type="text" placeholder='Last name' ng-model='member.lastName'>
 		</div>
 		
-		<div class="form-group">
-			<label for="imgUrl">Profile Image</label>
-			<input type="text" placeholder='Image URL' ng-model='member.imgUrl'>
+		<div class="form-group row">
+			<label class='col-xs-2' for="imgUrl">Profile Image</label>
+			<input class='col-xs-4' type="text" placeholder='Image URL' ng-model='member.imgUrl'>
 		</div>
 		
-		<div class='form-group'>
-			<label for="country">Country</label>
-			<input type="text" placeholder='Country' ng-model='member.country'>
+		<div class='form-group row'>
+			<label class='col-xs-2' for="country">Country</label>
+			<input class='col-xs-4' type="text" placeholder='Country' ng-model='member.country'>
 		</div>
 		
-		<div class="form-group">
-			<label for="bio">Bio</label>
-			<input type="text" placeholder='Decsribe yourself' ng-model='member.bio'>
+		<div class="form-group row">
+			<label class='col-xs-2' for="bio">Bio</label>
+			<input class='col-xs-6' type="text" placeholder='Decsribe yourself' ng-model='member.bio'>
 		</div>
 		
-		<div class="form-group">
-			<label for="websiteUrl">Website Url</label>
-			<input type="text" placeholder='linkedin, resume, stackoverflow, etc.' ng-model='member.websiteUrl'>
+		<div class="form-group row">
+			<label class='col-xs-2' for="websiteUrl">Website Url</label>
+			<input class='col-xs-4' type="text" placeholder='linkedin, resume, stackoverflow, etc.' ng-model='member.websiteUrl'>
 		</div>
 		
-		<div class='from-group'>
-			<label for="github">Github</label>
-			<input type="text" placeholder='Github URL' ng-model='member.github'>
+		<div class='from-group row'>
+			<label class='col-xs-2' for="github">Github</label>
+			<input class='col-xs-4' type="text" placeholder='Github URL' ng-model='member.github'>
 		</div>
 		
-		<div class="form-group">
-			<label for="twitterHandle">Twitter Handle</label>
-			<input type="text" placeholder='Twitter Handle' ng-model='member.twitterHandle'>
+		<div class="form-group row">
+			<label class='col-xs-2' for="twitterHandle">Twitter Handle</label>
+			<input class='col-xs-4' type="text" placeholder='Twitter Handle' ng-model='member.twitterHandle'>
 		</div>
 		
-		<div class="form-group">
-			<label for="favoriteTags">Favorite Tags</label>
-			<input type="text" placeHolder='separate tags with a comma' ng-model='member.favoriteTags'>
+		<div class="form-group row">
+			<label class='col-xs-2' for="favoriteTags">Favorite Tags</label>
+			<input class='col-xs-4'' type="text" placeHolder='separate tags with a comma' ng-model='member.favoriteTags'>
 		</div>
 		
 		<button type='submit' ng-click='dc.show = false' class="btn btn-primary">Save</button>

@@ -27,7 +27,7 @@
 
                 <h2>T: {{question.title}}  </h2>
                 <h3>Q: {{question.body}}   </h3>
-                <p>Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
+                <p>Posted by {{member.$id[question.memberId]}} at {{question.posted | date: 'short'}}</p>
                 <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
                 <p>Answered: {{question.answeredOn}}</p>
 

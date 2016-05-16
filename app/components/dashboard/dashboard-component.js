@@ -39,7 +39,7 @@ app.controller('DashboardController', function($rootScope, $scope){
 	dc.setImgUrl = function(imgUrl) {
 		if(imgUrl) {
 			$rootScope.member.imgUrl = imgUrl;
-		}
+		} 
 	}
 	
 	dc.setCountry = function(country) {
@@ -74,7 +74,11 @@ app.controller('DashboardController', function($rootScope, $scope){
 	
 	dc.setFavorites = function(favoriteTags) {
 		if(favoriteTags) {
-			arr = favoriteTags.split(",");
+			try{
+				arr = favoriteTags.split(",");
+			}catch(err){
+				arr = favoriteTags.join(',').split(",");				
+			}
 			for (i = 0; i < arr.length; i++) {
 				current = arr[i];
 				current.trim();
@@ -87,15 +91,13 @@ app.controller('DashboardController', function($rootScope, $scope){
 	dc.questions = function findQuestions(){
 		
 	};
+	
 	dc.answers = function findAnswers(){
 		
 	};
+	
 	dc.comments = function findComments() {
 		
 	};
-
-	
-
-    //   A feature request would be to add an edit profile button to the view that can show and hide the edit form in your html
 	
 });
