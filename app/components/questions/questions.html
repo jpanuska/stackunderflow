@@ -1,39 +1,56 @@
 <div class="container">
     <div class="row">
-       <div class="col-sm-12">
+        
+   <div class="col-sm-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+                          
          <form ng-submit="addQuestion(newQuestion)">
+             <h1>Ask your question</h1>
+             
           <div  class="form-group">
-                <label for="title">Your Question Title</label>
-                <input ng-model='newQuestion.name' type="text" class="form-control">
+            <input ng-model='newQuestion.title' type="text" class="form-control" placeholder="Title">
           </div>
-                
+                    
           <div  class="form-group">
-                <label for="body">Your question</label>
-                <input ng-model='newQuestion.body' type="text" class="form-control">
+                <input ng-model='newQuestion.body' type="text" class="form-control" placeholder="Question">
           </div>
           
-            <button type="submit" class="btn btn-success">Save</button>
-            <button type="reset"  class="btn btn-danger">Clean</button>
-            </form>
+          <div  class="form-group">
+                <input ng-model='newQuestion.tag' type="text" class="form-control" placeholder="Tags">
+          </div>
+
+            
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset"  class="btn btn-danger">Clean</button>
+         </form>
        </div>
-        
-        
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h1>Questions from DB</h1>
-            </div>
-            <div class="panel-body">
+
+       <div class="panel-body">
                 <div class="list-group">
-                <div class="list-group-item" ng-repeat="question in questions">
-                    {{question}}
-                    <span class="badge" ng-click="">X</span>
+                <div class="list-group-item" ng-repeat="question in questions" ng-init="getlength(question)">
+                   
+                    <h3>Title: {{question.title}}</h3>
+                    <h4> Question: {{question.body}}</h4>
+                    <p>Tags: <span ng-repeat="tag in question.tags track by $index" class='span-tag'> {{tag}} </span></p>
+                    <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
+                    <p>Answered: {{question.answeredOn | date:'short'}}</p>
+                    <p>Comments: {{question.commentCount}}</p>
+                    <p>Responses:{{question.responseCount}}</p>
+
+                    <div class="btn-group">
+                    <button ui-sref="question({id: question.$id})" type="button" class="btn btn-info">More</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteQuestion(question)">Delete</button>
+                    </div>    
                 </div>
                 </div>
-            </div>
         </div>
+        </div>
+   </div>
     </div>
 </div>
 
+<!--
 <p>If we are logged in we should have a member obj {{member}}</p>
 
 <h2>Responsibilites</h2>
@@ -43,3 +60,4 @@
 <p>The questions can be orderby max upvotes or by date created depending on the users choice.</p>
 <p>The question can be filtered based upon tags, unanswered</p>
 <p>No voting from this page.</p>
+-->

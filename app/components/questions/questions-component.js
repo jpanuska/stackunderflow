@@ -9,35 +9,53 @@ app.controller('QuestionsController', function($rootScope, $scope, DataService){
 
 	
 	$scope.addQuestion = function(newQuestion){
-		debugger
-	 newQuestion.memberId = $rootScope.member.$id;
+		
+		newQuestion.posted = Date.now();
+	    newQuestion.memberId = $rootScope.member.$id;
+		newQuestion.tags = newQuestion.tag.split(" ");
+		newQuestion.tag = null;
+		newQuestion.answeredOn = '';
+		newQuestion.answered = false;
 	  	$scope.questions.$add(newQuestion).then(function(ref){
-	  	  //Add the newly added question to the member object	
 	  	$rootScope.member.questions = $rootScope.member.questions || {};
 	     //Another Dictonary structure all we are doing is adding the questionId to the member.questions dictionary.
 	     //To avoid duplicating data in our database we only store the questionId instead of the entire question again 
 	     $rootScope.member.questions[ref.key()] = ref.key();
 	     $rootScope.member.$save();
+		 $scope.newQuestion = null;
 	  })
 	 }
+	 
+	 
+	 $scope.getlength = function(q){
+		 q.responses ? q.responseCount = Object.keys(q.responses).length : q.responseCount = 0;
+		 q.comments  ? q.commentCount  = Object.keys(q.comments).length : q.commentCount = 0;
+	 }
+	 
+	 
+	 $scope.deleteQuestion = function (question){
+		 $scope.questions.$remove(question);
+	 }
+	 
+	 
 	  /*
 	 * question Schema
 	 * {
-	 *  title: string,
-	 *  body: string,
-	 *  votes: {memberId: number},
-	 *  author: string,
-	 *  posted: date,
-	 *  answeredOn: date,
-	 *  answered: bool, 
-	 *	tags: [tags] 
+	 *  title: string,  - > from form
+	 *  body: string,	- > from form
+	 *  votes: {memberId: number}, -> ??
+	 *  author: string,	- > from scope
+	 *  posted: date,	- > from function
+	 *  answeredOn: date, - > from ????
+	 *  answered: bool,   -> from ???
+	 *	tags: [tags] 	  -> scope
 	 * } 
 	 */
 
 	
 });
 
-app.controller('QuestionController', function($rootScope, $scope, question, comments, responses){
+app.controller('QuestionController', function($rootScope, $scope, question, comments, responses, $firebaseArray){
 	/**
 	 * The question, comments, responses arguments being passed into the controller  ^^^^^^^
 	 * come from the question route resolve,
@@ -69,20 +87,72 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	$scope.question = question;
 	$scope.comments = comments;
 	$scope.responses = responses;
+
 	
-	/**
-	 * $scope.addComment = function(newQuestion){
-	 * 	newComment.memberId = $rootScope.member.$id;
-	 * 	$scope.comments.$add(newQuestion).then(function(ref){
-	 * 	  //Add the newly added comment to the member object	
-	 * 	  $rootScope.member.comments = $rootScope.member.comments || {};
-	 *    //Another Dictonary structure all we are doing is adding the commentId to the member.comments dictionary.
-	 *    //To avoid duplicating data in our database we only store the commentId instead of the entire question again 
-	 *    $rootScope.member.comments[ref.key()] = ref.key();
-	 *    $rootScope.member.$save();
-	 *  })
-	 * }
-	 * question Schema
+	
+	 $scope.addComment = function(newComment){
+		newComment.posted = Date.now();
+	  	newComment.memberId = $rootScope.member.$id;
+
+	  	$scope.comments.$add(newComment).then(function(ref){	
+	  	  	$rootScope.member.comments = $rootScope.member.comments || {};
+			$rootScope.member.comments[ref.key()] = ref.key();
+			$rootScope.member.$save();
+			$scope.newComment = null;
+	   })
+	  }
+	  
+	  $scope.deleteComment = function (com){
+		 $scope.comments.$remove(com);
+	 }
+	  
+	 $scope.addResponse = function(newResponse){
+		newResponse.posted = Date.now();
+	  	newResponse.memberId = $rootScope.member.$id;
+		question.answered = true;
+		question.answeredOn = Date.now();
+		question.$save();
+		debugger
+	  	$scope.responses.$add(newResponse).then(function(ref){
+			$rootScope.member.responses = $rootScope.member.responses || {};
+			$rootScope.member.responses[ref.key()] = ref.key();
+			$rootScope.member.$save();
+			$rootScope.member.$save();
+			$scope.newResponse = null;
+	   })
+	  }
+	  
+	 $scope.deleteResponse = function (res){
+		$scope.responses.$remove(res);	 
+	 }
+
+ 
+	 $scope.addRescom = function (newCommentToResponse, res){
+		 
+		 newCommentToResponse.posted = Date.now();
+		 newCommentToResponse.memberId = $rootScope.member.$id;
+		 var responseCommentsRef = question.$ref().child('responses').child(res.$id).child('comments');
+		 var responsesComments = $firebaseArray(responseCommentsRef);
+		 debugger
+		 responsesComments.$add(newCommentToResponse).then(function(ref){
+		 	$rootScope.member.comments = $rootScope.member.comments || {};
+			$rootScope.member.comments[ref.key()] = ref.key();
+			newCommentToResponse.id = ref.key()
+			ref.update(newCommentToResponse)
+			$rootScope.member.$save();
+			$scope.newCommentToResponse = null;
+	 	})
+	 	
+	 	}
+		 
+	$scope.deleteRescom = function (rescom, res){
+		question.$ref().child('responses').child(res.$id).child('comments').child(rescom.id).remove()
+	}
+
+});	
+	 
+
+	 /* question Schema
 	 * {
 	 *  title: string,
 	 *  body: string,
@@ -95,4 +165,3 @@ app.controller('QuestionController', function($rootScope, $scope, question, comm
 	 * } 
 	 */
 	
-});

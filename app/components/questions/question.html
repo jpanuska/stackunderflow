@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< HEAD
     <div class="row">
         <div class="col-sm-12>
             <form ng-submit="add??? What">
@@ -18,10 +19,74 @@
     
 </div>
 
+=======
+    
+    <div class="row">
+        
+        <div class="well">
+
+                <h2>T: {{question.title}}  </h2>
+                <h3>Q: {{question.body}}   </h3>
+                <p>Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
+                <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
+                <p>Answered: {{question.answeredOn}}</p>
+
+           <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-success" ng-click='addComment(newMes)'>Add comment</button>
+                    <button class='btn btn-warning' ng-click='addResponse(newMes)'>Add response</button>
+                </div>
+                <input ng-model='newMes.body'type="text" class="form-control">
+           </div>
+            <h3>Comments to the question</h3>
+            <div class="list-group">
+                <div class="list-group-item" ng-repeat="com in comments">
+                    <span class="badge" ng-click="changeVote(+1)">+</span>  
+                    <span class="badge" ng-click="changeVote(-1)">-</span>
+                    <span class="badge" ng-click="deleteComment(com)">X</span>                   
+                    <h6>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h6>
+                    <p>{{com.body}}</p>   
+                </div>
+             </div>
+        </div>
+     
+        
+        <div class="well">
+           <h3>Responses to the question</h3> 
+         <div class="list-group" ng-repeat="res in responses">
+                <div class="list-group-item" >
+                        <span class="badge" ng-click="deleteResponse(res)">X</span>
+                        <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
+                        <p>{{res.body}}</p>
+                </div>
+                <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-success" ng-click='addRescom(newRescom, res)'>Add comment</button>
+                        </div>
+                        <input ng-model='newRescom.body'type="text" class="form-control">
+                </div>
+                <div class="list-group" >
+                    <div class="list-group-item" ng-repeat="rescom in res.comments">
+                            <span class="badge" ng-click="deleteRescom(rescom, res)">X</span>
+                            <h6>Comment posted by {{rescom.memberId}} at {{rescom.posted | date: 'short'}}</h6>
+                            <p>{{rescom.body}}</p>
+                    </div>
+                </div>
+                
+        </div>
+       </div>
+            
+
+</div></div>
+>>>>>>> 05a794322a9bca25c1c2a8fdfb356f9750753663
 
 
 
 
+<<<<<<< HEAD
+=======
+<!--
+>>>>>>> 05a794322a9bca25c1c2a8fdfb356f9750753663
 <h1>A SINGLE QUESTION VIEW</h1>
 
 <p>If we are logged in we should have a member obj {{member}}</p>
@@ -33,3 +98,4 @@
 <p>Only the member who posted the the questions/answers/comments can edit their content</p>
 <p>A member may only upvote the questions/answers/comments once.</p>
 <p>A member can change their vote to either up or down but may not vote both ways.</p>
+-->
