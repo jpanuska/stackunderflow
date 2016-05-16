@@ -73,7 +73,7 @@ app.service('AuthService', function ($rootScope, $firebaseObject, CONSTANTS) {
 				reputation: 0,
 				created: Date.now()
 			}
-			db.child('users').child(authData.uid).update(userToAdd);
+			db.child('users').child(authData.uid).set(userToAdd);
 	}
 
 	this.authMember = authMember;
@@ -89,6 +89,7 @@ app.service('AuthService', function ($rootScope, $firebaseObject, CONSTANTS) {
 	}
 
 	this.login = function (user, cb) {
+		debugger
 		db.authWithPassword(user, function (err, authData) {
 			if (err) {
 				return cb(err)
