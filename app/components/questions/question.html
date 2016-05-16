@@ -1,25 +1,4 @@
 <div class="container">
-<<<<<<< HEAD
-    <div class="row">
-        <div class="col-sm-12>
-            <form ng-submit="add??? What">
-                
-            //Need question and responses to render here
-        </div>
-            <div class="form=group">
-            <label for="body"> Here is the Question w comment HTML</label>
-            <input ng-model='Question-Comment.body' type="text" class="from-control">    
-                
-            </div>    
-        <button tupe="submit" class="btn btn-success">Save</button>        
-        
-    </div>
-    
-    
-    
-</div>
-
-=======
     
     <div class="row">
         
@@ -30,8 +9,8 @@
                <h3>Q: {{question.body}}   </h3>
             </div>
             <div class="col-md-8">
-               <p>Posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
-               <p>Tags: <span ng-repeat="tag in question.tags" class='span-tag'> {{tag}} </span></p>
+               <p>Posted by {{question.username}} at {{question.posted | date: 'short'}}</p>
+               <p>Tags: <span ng-repeat="tag in question.tags" class='tagz'> {{tag}} </span></p>
                <p>Last response: {{question.answeredOn | date: 'short'}}</p>
            </div>
             <div class="col-md-1">
@@ -59,7 +38,7 @@
                     <span class="badge" ng-click="changeVote(+1)">+</span>  
                     <span class="badge" ng-click="changeVote(-1)">-</span>
                     <span class="badge" ng-click="deleteComment(com)">X</span>                   
-                    <h6>Comment posted by {{com.memberId}} at {{com.posted | date: 'short'}}</h6>
+                    <h6>Comment posted by {{com.username}} at {{com.posted | date: 'short'}}</h6>
                     <p>{{com.body}}</p>   
                 </div>
              </div>
@@ -71,7 +50,7 @@
          <div class="list-group" ng-repeat="res in responses">
                 <div class="list-group-item" >
                         <span class="badge" ng-click="deleteResponse(res)">X</span>
-                        <h6>Response posted by {{res.memberId}} at {{res.posted | date: 'short'}}</h6>
+                        <h6>Response posted by {{res.username}} at {{res.posted | date: 'short'}}</h6>
                         <p>{{res.body}}</p>
                 </div>
                 <div class="input-group">
@@ -93,24 +72,3 @@
             
 
 </div></div>
->>>>>>> 05a794322a9bca25c1c2a8fdfb356f9750753663
-
-
-
-
-<<<<<<< HEAD
-=======
-<!--
->>>>>>> 05a794322a9bca25c1c2a8fdfb356f9750753663
-<h1>A SINGLE QUESTION VIEW</h1>
-
-<p>If we are logged in we should have a member obj {{member}}</p>
-
-<h3>Question Rules</h3>
-<p>A member must be logged in to cast votes, ask questions, add responses, or add comments</p>
-<p>A member may not upvote their own questions/answers/comments</p>
-<p>Only the member who posted the the questions can mark an answer as the correct answer</p>
-<p>Only the member who posted the the questions/answers/comments can edit their content</p>
-<p>A member may only upvote the questions/answers/comments once.</p>
-<p>A member can change their vote to either up or down but may not vote both ways.</p>
--->

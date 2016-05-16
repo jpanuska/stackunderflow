@@ -34,7 +34,7 @@
                         <h3>Title: {{question.title}}</h3>
                         <h4>Question: {{question.body}}</h4>
                         <p>Tags: <span ng-repeat="tag in question.tags track by $index" class='span-tag'> {{tag}} </span></p>
-                        <p>posted by {{question.memberId}} at {{question.posted | date: 'short'}}</p>
+                        <p>posted by {{question.username}} at {{question.posted | date: 'short'}}</p>
 
                     </div>
 
