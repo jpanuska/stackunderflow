@@ -1,24 +1,27 @@
 app.controller('DashboardController', function($rootScope, $scope){
 	var dc = this;
 	
-	dc.setMember = function(userName, firstName, lastName, imgUrl, country, bio, websiteUrl, github, twitterHandle, favoriteTags) {
-		dc.setUsername(userName);
-		dc.setFirstName(firstName);
-		dc.setLastName(lastName);
-		dc.setImgUrl(imgUrl);
-		dc.setCountry(country);
-		dc.setBio(bio);
-		dc.setWebsiteUrl(websiteUrl);
-		dc.setGitHub(github);
-		dc.setTwitterHandle(twitterHandle);
-		dc.setFavorites(favoriteTags);
+	dc.editMember = function(member) {
+		dc.setUsername(member.userName);
+		// console.log(userName);
+		// dc.setFirstName(firstName);
+		// dc.setLastName(lastName);
+		// dc.setImgUrl(imgUrl);
+		// dc.setCountry(country);
+		// dc.setBio(bio);
+		// dc.setWebsiteUrl(websiteUrl);
+		// dc.setGitHub(github);
+		// dc.setTwitterHandle(twitterHandle);
+		// dc.setFavorites(favoriteTags);
 		
-		$rootscope.member.$save();
+		$rootscope.member.$save(member);
 	}
 	
 	dc.setUsername = function(userName) {
 		if(username) {
-			$rootscope.member
+			debugger
+			$rootscope.member.userName = userName;
+			console.log(userName);
 		}
 	}
 	

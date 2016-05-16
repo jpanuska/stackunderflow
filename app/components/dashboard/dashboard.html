@@ -1,9 +1,13 @@
 <h1>Having a profile that you can't edit it boring</h1>
 <p>member Object: {{member}}</p>
 
-<p>This page needs some flair</p>
-<p>Try rendering to the screen all of the fields that will eventually be added to the $rootScope.member object</p>
-<p>For the MemberObject Schema look at the comments on this file</p>
+<form ng-submit='editMember(member)' class='form'>
+	<div class='form-group'>
+		<label for="username">Username</label>
+		<input type="text" placeholder='Username' ng-model='member.userName'>
+	</div>
+	<button type='submit' class="btn btn-primary">Save</button>
+</form>
 
 
 
