@@ -7,15 +7,61 @@
 	</div>
 </div>
 
+<div>
+	{{member}}
+</div>
 
-<h1>Having a profile that you can't edit it boring</h1>
-<p>member Object: {{member}}</p>
-
-<form ng-submit='editMember(member)' class='form'>
+<form ng-submit='dc.editMember(member)' class='form'>
 	<div class='form-group'>
 		<label for="username">Username</label>
-		<input type="text" placeholder='Username' ng-model='member.userName'>
+		<input type="text" placeholder='Username' ng-model='member.username'>
 	</div>
+	
+	<div class='form-group'>
+		<label for="firstName">First Name</label>
+		<input type="text" placeholder='First name' ng-model='member.firstName'>
+	</div>
+	
+	<div class="form-group">
+		<label for="lastName">Last Name</label>
+		<input type="text" placeholder='Last name' ng-model='member.lastName'>
+	</div>
+	
+	<div class="form-group">
+		<label for="imgUrl">Profile Image</label>
+		<input type="text" placeholder='Image URL' ng-model='member.imgUrl'>
+	</div>
+	
+	<div class='form-group'>
+		<label for="country">Country</label>
+		<input type="text" placeholder='Country' ng-model='member.country'>
+	</div>
+	
+	<div class="form-group">
+		<label for="bio">Bio</label>
+		<input type="text" placeholder='Decsribe yourself' ng-model='member.bio'>
+	</div>
+	
+	<div class="form-group">
+		<label for="websiteUrl">Website Url</label>
+		<input type="text" placeholder='linkedin, resume, stackoverflow, etc.' ng-model='member.websiteUrl'>
+	</div>
+	
+	<div class='from-group'>
+		<label for="github">Github</label>
+		<input type="text" placeholder='Github URL' ng-model='member.github'>
+	</div>
+	
+	<div class="form-group">
+		<label for="twitterHandle">Twitter Handle</label>
+		<input type="text" placeholder='Twitter Handle' ng-model='member.twitterHandle'>
+	</div>
+	
+	<div class="form-group">
+		<label for="favoriteTags">Favorite Tags</label>
+		<input type="text" placeHolder='separate tags with a comma' ng-model='member.favoriteTags'>
+	</div>
+	
 	<button type='submit' class="btn btn-primary">Save</button>
 </form>
 

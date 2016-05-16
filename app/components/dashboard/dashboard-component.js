@@ -1,36 +1,95 @@
 app.controller('DashboardController', function($rootScope, $scope){
-<<<<<<< HEAD
 	var dc = this;
 	
 	dc.editMember = function(member) {
-		dc.setUsername(member.userName);
-		// console.log(userName);
-		// dc.setFirstName(firstName);
-		// dc.setLastName(lastName);
-		// dc.setImgUrl(imgUrl);
-		// dc.setCountry(country);
-		// dc.setBio(bio);
-		// dc.setWebsiteUrl(websiteUrl);
-		// dc.setGitHub(github);
-		// dc.setTwitterHandle(twitterHandle);
-		// dc.setFavorites(favoriteTags);
+		dc.setUsername(member.username);
+		dc.setFirstName(member.firstName);
+		dc.setLastName(member.lastName);
+		dc.setImgUrl(member.imgUrl);
+		dc.setCountry(member.country);
+		dc.setBio(member.bio);
+		dc.setWebsiteUrl(member.websiteUrl);
+		dc.setGitHub(member.github);
+		dc.setTwitterHandle(member.twitterHandle);
+		dc.setFavorites(member.favoriteTags);
 		
-		$rootscope.member.$save(member);
+		dc.extras(member);
+		
+		console.log($rootScope.member);
+		
+		$rootScope.member.$save();
 	}
 	
-	dc.setUsername = function(userName) {
+	dc.setUsername = function(username) {
 		if(username) {
-			debugger
-			$rootscope.member.userName = userName;
-			console.log(userName);
+			$rootScope.member.username = username;
 		}
 	}
 	
-=======
+	dc.setFirstName = function(firstName) {
+		if(firstName) {
+			$rootScope.member.firstName = firstName;
+		}
+	}
 	
-	var x = $rootScope.member;
-	console.log(x);
->>>>>>> 1aa63dfd270d6add8f4a68809297f6e0e5a66ad5
+	dc.setLastName = function(lastName) {
+		if(lastName) {
+			$rootScope.member.lastName = lastName;
+		}
+	}
+	
+	dc.setImgUrl = function(imgUrl) {
+		if(imgUrl) {
+			$rootScope.member.imgUrl = imgUrl;
+		}
+	}
+	
+	dc.setCountry = function(country) {
+		if(country) {
+			$rootScope.member.country = country;
+		}
+	}
+	
+	dc.setBio = function(bio) {
+		if(bio) {
+			$rootScope.member.bio = bio;
+		}
+	}
+	
+	dc.setWebsiteUrl = function(websiteUrl) {
+		if(websiteUrl) {
+			$rootScope.member.websiteUrl = websiteUrl;
+		}
+	}
+	
+	dc.setGitHub = function(github) {
+		if(github) {
+			$rootScope.member.github = github;
+		}
+	}
+	
+	dc.setTwitterHandle = function(twitterHandle) {
+		if(twitterHandle) {
+			$rootScope.member.twitterHandle = twitterHandle;
+		}
+	}
+	
+	dc.setFavorites = function(favoriteTags) {
+		if(favoriteTags) {
+			arr = favoriteTags.split(",");
+			for (i = 0; i < arr.length; i++) {
+				current = arr[i];
+				current.trim();
+			}
+			
+			$rootScope.member.favoriteTags = arr;
+		}
+	}
+	
+	dc.extras = function(member) {
+		member.accountCreated = 
+	}
+
 	/**
 	 * To edit the member object you must go through $rootScope.member
 	 * $rootScope.member is a $firebaseObject from AngularFire 
